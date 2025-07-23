@@ -17,12 +17,12 @@ type DatabaseInterface interface {
 	GetUserCoins(username string) *CoinDetails
 	SetupDatabase() error
 }
-func NewDatabase() (*DatabaseInterface, error){
-	var database DatabaseInterface = &mockDB{}
-	var err error =database.SetupDatabase()
-	if err != nil{
+func NewDatabase() (*DatabaseInterface, error) {
+	var database DatabaseInterface = &postgresDB{}
+	var err error = database.SetupDatabase()
+	if err != nil {
 		log.Error(err)
-		return nil,err
+		return nil, err
 	}
 	return &database, nil
 }
