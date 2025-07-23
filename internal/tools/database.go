@@ -4,7 +4,7 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type loginDetails struct{
+type LoginDetails struct{
 	AuthToken string
 	Username string
 }

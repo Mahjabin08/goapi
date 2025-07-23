@@ -26,10 +26,10 @@ func (pg *postgresDB) SetupDatabase() error {
 	return nil
 }
 
-func (pg *postgresDB) GetUserLoginDetails(username string) *loginDetails {
+func (pg *postgresDB) GetUserLoginDetails(username string) *LoginDetails {
 	row := pg.DB.QueryRow("SELECT username, auth_token FROM login_details WHERE username = $1", username)
 
-	var user loginDetails
+	var user LoginDetails
 	if err := row.Scan(&user.Username, &user.AuthToken); err != nil {
 		log.Println("User not found:", err)
 		return nil

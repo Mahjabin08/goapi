@@ -16,7 +16,7 @@ func Authorization(next http.Handler) http.Handler {
 		token := r.Header.Get("Authorization")
 		var err error
 
-		if username=-"" || token ==""{
+		if username=="" || token ==""{
 			log.Error(UnAuthorizedError)
 			api.RequestErrorHandler(w,UnAuthorizedError)
 			return
@@ -27,7 +27,7 @@ func Authorization(next http.Handler) http.Handler {
 			api.InternalErrorHandler(w)
 			return
 		}
-		var loginDetails *tools.loginDetails
+		var loginDetails *tools.LoginDetails
 		loginDetails=(*database).GetUserLoginDetails(username)
 		if (loginDetails== nil || (token != (*loginDetails).AuthToken)){
 			log.Error(UnAuthorizedError)
